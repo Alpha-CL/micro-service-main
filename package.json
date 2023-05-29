@@ -1,9 +1,12 @@
 {
+  "name": "micro-service-main",
   "private": true,
   "author": "Alphal-CL <xiaodao_92@yeah.net>",
   "scripts": {
-    "dev": "max dev",
-    "build": "max build",
+    "build": "cross-env UMI_ENV=prod max build",
+    "dev": "cross-env UMI_ENV=dev max dev",
+    "test": "cross-env UMI_ENV=test MOCK=none max dev",
+    "uat": "cross-env UMI_ENV=uat max dev",
     "format": "prettier --cache --write .",
     "prepare": "husky install",
     "postinstall": "max setup",
