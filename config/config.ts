@@ -1,7 +1,7 @@
 import { defineConfig } from '@umijs/max';
-import routes from './routes';
 import proxy from './proxy';
 import qiankun from './qiankun';
+import routes from './routes';
 
 export default defineConfig({
   antd: {},
