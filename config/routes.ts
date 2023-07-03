@@ -1,21 +1,16 @@
 export default [
   {
-    path: '/',
-    redirect: '/home',
+    path: "/",
+    redirect: "/chat",
   },
   {
-    name: '首页',
-    path: '/home',
-    component: './Home',
+    name: "ChatGPT",
+    path: "/chat/*",
+    component: "./chat"
   },
   {
-    name: '权限演示',
-    path: '/access',
-    component: './Access',
-  },
-  {
-    name: ' CRUD 示例',
-    path: '/table',
-    component: './Table',
-  },
+    name: "Test",
+    path: "/test",
+    component: "./test"
+  }
 ];

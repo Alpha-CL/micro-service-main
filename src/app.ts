@@ -14,3 +14,5 @@ export const layout = () => {
     },
   };
 };
+
+export * as qiankun from './qiankun';
