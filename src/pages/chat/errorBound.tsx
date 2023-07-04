@@ -1,17 +1,16 @@
 import React, { PureComponent } from 'react';
 
 interface Props {
-  [key: string]: any,
-  children?: any
+  [key: string]: any;
+  children?: any;
 }
 
 interface State {
-  hasError: boolean
+  hasError: boolean;
 }
 
 // PureComponent is will optimize shouldComponentUpdate hook
-export default class ChatErrorBound  extends PureComponent<Props, State, {}> {
-
+export default class ChatErrorBound extends PureComponent<Props, State, {}> {
   static defaultProps: any = {};
 
   static propTypes: Props = {};
@@ -25,19 +24,12 @@ export default class ChatErrorBound  extends PureComponent<Props, State, {}> {
   }
 
   render() {
-
     // An error occurred in the descendant component
     if (this.state.hasError) {
-      return (
-        <h1>Something went wrong.</h1>
-      );
+      return <h1>Something went wrong.</h1>;
     }
 
-    return (
-      <React.Fragment>
-        {this.props.children}
-      </React.Fragment>
-    );
+    return <React.Fragment>{this.props.children}</React.Fragment>;
   }
 
   /**

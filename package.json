@@ -5,6 +5,7 @@
   "scripts": {
     "build": "cross-env UMI_ENV=prod max build",
     "dev": "cross-env UMI_ENV=dev max dev",
+    "eslint": "eslint --fix ./**/*.ts ./**/*.js ./**/*.tsx",
     "format": "prettier --cache --write .",
     "postinstall": "max setup",
     "prepare": "husky install",
@@ -12,6 +13,18 @@
     "start": "npm run dev",
     "test": "cross-env UMI_ENV=test MOCK=none max dev",
     "uat": "cross-env UMI_ENV=uat max dev"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,json,css,scss,md}": [
+      "eslint --fix",
+      "prettier --write",
+      "git add"
+    ]
   },
   "dependencies": {
     "@ant-design/icons": "^5.0.1",
