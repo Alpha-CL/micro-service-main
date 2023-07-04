@@ -15,4 +15,4 @@ export const layout = () => {
   };
 };
 
-export * as qiankun from './qiankun';
+export const qiankun = require('./qiankun').default;
