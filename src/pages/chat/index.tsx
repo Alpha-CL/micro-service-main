@@ -19,7 +19,16 @@ const Chat: React.FC<ChatProps> = (props: ChatProps) => {
       {/*{props.children}*/}
       {/*props: {JSON.stringify(props)}<br />*/}
 
-      <MicroApp name="chat" autoCaptureError />
+      ----------------------------------------------------------------
+
+      <MicroApp
+        name="chat"
+        loader={(loading) => {}}
+        errorBoundary={(error) => {}}
+        autoCaptureError
+      />
+
+      ----------------------------------------------------------------
 
     </React.Fragment>
   );
