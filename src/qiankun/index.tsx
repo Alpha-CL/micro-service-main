@@ -1,7 +1,7 @@
 import { addGlobalUncaughtErrorHandler } from 'qiankun';
 
 import { apps } from '@/qiankun/apps';
-import QiankunErrorBoundary from '@/qiankun/errorBound';
+import QiankunErrorBoundary from '@/qiankun/ErrorBoundary';
 import { lifeCycles } from '@/qiankun/lifeCycles';
 import { qiankunCallback, qiankunFetch } from '@/qiankun/utils';
 import { getMicroAppRouteComponent } from '@@/plugin-qiankun-master/getMicroAppRouteComponent';

@@ -10,7 +10,7 @@ interface State {
 }
 
 // PureComponent is will optimize shouldComponentUpdate hook
-export default class ChatErrorBound extends PureComponent<Props, State, {}> {
+export default class ChatErrorBoundary extends PureComponent<Props, State, {}> {
   static defaultProps: any = {};
 
   static propTypes: Props = {};
