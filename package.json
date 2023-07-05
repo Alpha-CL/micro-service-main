@@ -3,28 +3,17 @@
   "private": true,
   "author": "Alphal-CL <xiaodao_92@yeah.net>",
   "scripts": {
-    "build": "cross-env UMI_ENV=prod max build",
+    "start": "npm run dev",
     "dev": "cross-env UMI_ENV=dev max dev",
-    "eslint": "eslint --fix ./**/*.ts ./**/*.js ./**/*.tsx",
+    "uat": "cross-env UMI_ENV=uat max dev",
+    "test": "cross-env UMI_ENV=test MOCK=none max dev",
+    "build": "cross-env UMI_ENV=prod max build",
+    "eslint": "eslint --fix ./**/*.js ./**/*.ts ./**/*.tsx",
+    "stylelint": "stylelint --fix ./**/*.css ./**/*.less ./**/*.scss",
     "format": "prettier --cache --write .",
     "postinstall": "max setup",
     "prepare": "husky install",
-    "setup": "max setup",
-    "start": "npm run dev",
-    "test": "cross-env UMI_ENV=test MOCK=none max dev",
-    "uat": "cross-env UMI_ENV=uat max dev"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx,json,css,scss,md}": [
-      "eslint --fix",
-      "prettier --write",
-      "git add"
-    ]
+    "setup": "max setup"
   },
   "dependencies": {
     "@ant-design/icons": "^5.0.1",
@@ -41,11 +30,24 @@
     "@umijs/plugins": "^4.0.69",
     "eslint": "^8.41.0",
     "husky": "^8.0.3",
-    "lint-staged": "^13.2.0",
+    "lint-staged": "^13.2.3",
     "prettier": "2.8.8",
     "prettier-plugin-organize-imports": "^3.2.2",
     "prettier-plugin-packagejson": "^2.4.3",
     "stylelint": "^15.6.2",
     "typescript": "^5.0.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,css,scss}": [
+      "npm run eslint"
+    ],
+    "*.{css,scss}": [
+      "npm run stylelint"
+    ]
   }
 }
