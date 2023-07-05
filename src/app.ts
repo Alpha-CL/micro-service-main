@@ -6,6 +6,7 @@ export async function getInitialState(): Promise<{ name: string }> {
   return { name: '@umijs/max' };
 }
 
+
 export const layout = () => {
   return {
     logo: 'https://img.alicdn.com/tfs/TB1YHEpwUT1gK0jSZFhXXaAtVXa-28-27.svg',
@@ -15,4 +16,9 @@ export const layout = () => {
   };
 };
 
-export const qiankun = require('./qiankun').default;
+
+export {
+  qiankun,
+  useQiankunStateForSlave,
+  patchClientRoutes,
+} from './qiankun/index';
