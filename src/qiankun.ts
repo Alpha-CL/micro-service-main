@@ -1,5 +1,5 @@
 export default {
-  app: [
+  apps: [
     {
       name: 'chat',
       entry: '//localhost:8801',
