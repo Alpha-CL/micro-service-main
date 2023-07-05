@@ -12,6 +12,18 @@ export default defineConfig({
   layout: {
     title: '@umijs/max',
   },
+  outputPath: 'dist',
+  locale: {
+    /**
+     * https://umijs.org/docs/max/i18n
+     * 默认使用 src/locales/zh-CN.ts 作为多语言文件
+     */
+    default: 'zh-CN',
+    baseSeparator: '-',
+  },
+  styledComponents: {
+    babelPlugin: {},
+  },
   npmClient: 'yarn',
   routes,
   proxy,
