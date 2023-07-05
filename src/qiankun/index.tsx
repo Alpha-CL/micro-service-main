@@ -1,12 +1,11 @@
 import { addGlobalUncaughtErrorHandler } from 'qiankun';
 
-import { qiankunFetch, qiankunCallback } from '@/qiankun/utils';
-import { lifeCycles } from '@/qiankun/lifeCycles';
 import { apps } from '@/qiankun/apps';
+import QiankunErrorBoundary from '@/qiankun/errorBound';
+import { lifeCycles } from '@/qiankun/lifeCycles';
+import { qiankunCallback, qiankunFetch } from '@/qiankun/utils';
 import { getMicroAppRouteComponent } from '@@/plugin-qiankun-master/getMicroAppRouteComponent';
 import './state';
-import QiankunErrorBoundary from '@/qiankun/errorBound';
-
 
 export function patchClientRoutes({ routes }: any) {
   routes[0].children.forEach((item: any, index: number) => {

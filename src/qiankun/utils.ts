@@ -1,8 +1,6 @@
-import {history} from "@umijs/max";
 import { notification } from 'antd';
 
-
-export const qiankunCallback = (data: { name: string, message: string }) => {
+export const qiankunCallback = (data: { name: string; message: string }) => {
   notification.open({
     type: 'info',
     message: `来自 ${data.name} 的 Reply`,
@@ -12,7 +10,6 @@ export const qiankunCallback = (data: { name: string, message: string }) => {
     },
   });
 };
-
 
 export async function qiankunFetch(url: string, ...args: any[]) {
   //  拦截子应用加载资源失败的情况处理
@@ -25,5 +22,5 @@ export async function qiankunFetch(url: string, ...args: any[]) {
     async text() {
       return '';
     },
-  }
+  };
 }

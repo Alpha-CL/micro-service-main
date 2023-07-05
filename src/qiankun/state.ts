@@ -1,5 +1,5 @@
-import { initGlobalState, MicroAppStateActions } from 'qiankun';
 import { qiankunCallback } from '@/qiankun/utils';
+import { initGlobalState, MicroAppStateActions } from 'qiankun';
 
 const state = {
   slogan: 'Hello MicroFrontend from qiankun11-initGlobalState',
