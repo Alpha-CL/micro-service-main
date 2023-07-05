@@ -21,11 +21,8 @@
     }
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx,css,scss}": [
-      "npm run eslint"
-    ],
-    "*.{css,scss}": [
-      "npm run stylelint"
+    "*.{js,jsx,ts,tsx,css,less,scss}": [
+      "max lint"
     ]
   },
   "dependencies": {
