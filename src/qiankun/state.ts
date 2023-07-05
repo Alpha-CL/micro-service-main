@@ -3,7 +3,7 @@ import { initGlobalState, MicroAppStateActions } from 'qiankun';
 
 const state = {
   slogan: 'Hello MicroFrontend from qiankun11-initGlobalState',
-  qiankunCallback,
+  callback: qiankunCallback,
 };
 
 /**
@@ -14,7 +14,8 @@ const actions: MicroAppStateActions = initGlobalState(state);
 
 //  监听数据变化
 actions.onGlobalStateChange((state, prev) => {
-  // update
+  console.log('-> onGlobalStateChange', state, prev);
+  // 更新数据
   // actions.setGlobalState(state);
 });
 

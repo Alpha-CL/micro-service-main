@@ -1,7 +1,7 @@
 import { addGlobalUncaughtErrorHandler } from 'qiankun';
 
-import { apps } from '@/qiankun/apps';
 import QiankunErrorBoundary from '@/qiankun/ErrorBoundary';
+import { apps } from '@/qiankun/apps';
 import { lifeCycles } from '@/qiankun/lifeCycles';
 import { qiankunCallback, qiankunFetch } from '@/qiankun/utils';
 import { getMicroAppRouteComponent } from '@@/plugin-qiankun-master/getMicroAppRouteComponent';
@@ -24,11 +24,13 @@ export function patchClientRoutes({ routes }: any) {
   });
 }
 
-// umi下自带的父子通信方式
+/**
+ * umi下自带的父子通信方式
+ */
 export function useQiankunStateForSlave() {
   return {
     slogan: 'Hello MicroFrontend from umi-useQiankunStateForSlave',
-    qiankunCallback,
+    callback: qiankunCallback,
   };
 }
 
