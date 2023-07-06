@@ -12,12 +12,18 @@ const state = {
  */
 const actions: MicroAppStateActions = initGlobalState(state);
 
-//  监听数据变化
+/**
+ * 监听数据变化
+ */
 actions.onGlobalStateChange((state, prev) => {
   console.log('-> onGlobalStateChange', state, prev);
-  // 更新数据
-  // actions.setGlobalState(state);
+  /**
+   * 更新数据
+   */
+  actions.setGlobalState(state);
 });
 
-//  取消监听
+/**
+ * 取消监听
+ */
 // actions.offGlobalStateChange();

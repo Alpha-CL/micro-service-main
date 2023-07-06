@@ -1,3 +1,4 @@
+import { MicroApp } from '@umijs/max';
 import React from 'react';
 // import styles from "./index.module.less";
 // import classNames from "classnames";
@@ -9,10 +10,13 @@ const Test = (props) => {
 
   return (
     <React.Fragment>
-      TestComp
-      {props.children}
-      props: {JSON.stringify(props)}
-      <br />
+      <MicroApp
+        name="chat"
+        base="/test"
+        loader={(loading) => {}}
+        errorBoundary={(error) => {}}
+        autoCaptureError
+      />
     </React.Fragment>
   );
 };

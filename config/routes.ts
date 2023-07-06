@@ -1,16 +1,16 @@
 export default [
   {
     path: '/',
-    redirect: '/chat',
+    redirect: '/test',
   },
   {
     name: 'ChatGPT',
-    path: '/chat/*',
+    path: '/chat',
     component: './chat',
   },
   {
     name: 'Test',
-    path: '/test',
+    path: '/test/*',
     component: './test',
   },
 ];

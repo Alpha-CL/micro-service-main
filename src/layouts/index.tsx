@@ -10,10 +10,6 @@ export interface LayoutProps {
 const Layout: React.FC<LayoutProps> = (props: LayoutProps) => {
   return (
     <React.Fragment>
-      LayoutComp
-      {props.children}
-      props: {JSON.stringify(props)}
-      <br />
       <Outlet />
     </React.Fragment>
   );

@@ -1,7 +1,10 @@
+import { history } from '@umijs/max';
+import { Button, Result } from 'antd';
 import React, { PureComponent } from 'react';
 
 interface Props {
   [key: string]: any;
+
   children?: any;
 }
 
@@ -10,7 +13,11 @@ interface State {
 }
 
 // PureComponent is will optimize shouldComponentUpdate hook
-export default class ChatErrorBoundary extends PureComponent<Props, State, {}> {
+export default class TestErrorBoundary extends PureComponent<
+  Props,
+  State,
+  Record<string, never>
+> {
   static defaultProps: any = {};
 
   static propTypes: Props = {};
@@ -21,15 +28,6 @@ export default class ChatErrorBoundary extends PureComponent<Props, State, {}> {
 
   constructor(props: any) {
     super(props);
-  }
-
-  render() {
-    // An error occurred in the descendant component
-    if (this.state.hasError) {
-      return <h1>Something went wrong.</h1>;
-    }
-
-    return <React.Fragment>{this.props.children}</React.Fragment>;
   }
 
   /**
@@ -56,5 +54,32 @@ export default class ChatErrorBoundary extends PureComponent<Props, State, {}> {
   // 触发时机: 渲染子组件过程中, 发生错误之后，更新页面之后触发
   componentDidCatch(err: any, info: any) {
     console.log(err, info);
+  }
+
+  render() {
+    // An error occurred in the descendant component
+    if (this.state.hasError) {
+      return (
+        <>
+          <Result
+            status={500}
+            title={'500'}
+            subTitle={'Sorry, something went wrong.'}
+            extra={
+              <Button
+                type="primary"
+                onClick={() => {
+                  history.push('/');
+                }}
+              >
+                Back Home
+              </Button>
+            }
+          />
+        </>
+      );
+    }
+
+    return <React.Fragment>{this.props.children}</React.Fragment>;
   }
 }
