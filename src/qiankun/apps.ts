@@ -36,7 +36,7 @@ export const apps: Array<QiankunApp> = [
     name: 'chat',
     entry: '//localhost:8801',
     activeRule: '/chat/*',
-    container: '#app-chat',
+    container: '#micro-app-chat',
     props: {
       name: 'chat-gpt',
       base: '/chat',
