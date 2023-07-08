@@ -11,10 +11,18 @@ const degrade =
   !window.Proxy ||
   !window.CustomElementRegistry;
 
+/**
+ * 大部分业务无需设置 attrs
+ * 此处修正 iframe 的 src，是防止github pages csp报错
+ * 因为默认是只有 host+port，没有携带路径
+ */
+const attrs = isProduction ? { src: hostMap('//localhost:7700/') } : {};
+
 apps.forEach((app) => {
   setupApp({
     ...app,
     degrade,
+    attrs,
     ...lifecycles,
   });
   preloadApp({

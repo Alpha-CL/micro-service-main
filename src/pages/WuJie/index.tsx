@@ -18,7 +18,7 @@ const WuJie: React.FC<WuJieProps> = (props: WuJieProps) => {
         <WujieReact
           height="100%"
           width="100%"
-          name="react17"
+          name="micro-sub-app"
           url={'//localhost:8801/'}
           sync={true}
           props={props}

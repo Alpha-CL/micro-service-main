@@ -3,16 +3,13 @@ import { credentialsFetch } from '@/wujie/utils';
 
 const apps = [
   {
-    name: 'react16',
+    name: 'micro-sub-app',
     url: '//localhost8801/',
     attrs: {},
     exec: true,
     fetch: credentialsFetch,
     plugins,
-    prefix: {
-      'prefix-dialog': '/dialog',
-      'prefix-location': '/location',
-    },
+    prefix: {},
   },
 ];
 
