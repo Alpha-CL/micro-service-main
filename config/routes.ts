@@ -1,7 +1,7 @@
 /**
  * https://umijs.org/docs/guides/routes
  */
-export default [
+const routes = [
   {
     path: '/',
     redirect: '/demo',
@@ -16,3 +16,5 @@ export default [
   //   component: "./404",
   // },
 ];
+
+export default routes;
