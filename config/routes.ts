@@ -11,6 +11,11 @@ const routes = [
     path: '/demo',
     component: './Demo',
   },
+  {
+    name: 'wujie',
+    path: '/wujie',
+    component: './WuJie',
+  },
   // {
   //   path: "/*",
   //   component: "./404",

@@ -4,3 +4,4 @@
 // 更多信息见文档：https://umijs.org/docs/api/runtime-config#getinitialstate
 
 export { getInitialState, layout, patchClientRoutes } from './config';
+import './wujie';
