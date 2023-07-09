@@ -6,5 +6,6 @@ module.exports = {
     'no-unused-vars': 0,
     '@typescript-eslint/no-unused-vars': 0,
     '@typescript-eslint/no-useless-constructor': 0,
+    '@typescript-eslint/no-use-before-define': 0,
   },
 };
