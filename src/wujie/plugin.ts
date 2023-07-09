@@ -1,24 +1,24 @@
 const plugins = [
   {
     htmlLoader: (code) => {
-      console.log('html-loader');
+      console.log('-> htmlLoader');
       return code;
     },
     jsBeforeLoaders: [
       {
         callback(appWindow) {
-          console.log('js-before-loader-callback', appWindow.__WUJIE.id);
+          console.log('-> jsBeforeLoaders', appWindow.__WUJIE.id);
         },
       },
     ],
     jsLoader: (code, url) => {
-      console.log('js-loader', url);
+      console.log('-> jsLoader', url);
       return code;
     },
     jsAfterLoaders: [
       {
         callback(appWindow) {
-          console.log('js-after-loader-callback', appWindow.__WUJIE.id);
+          console.log('-> jsAfterLoaders', appWindow.__WUJIE.id);
         },
       },
     ],
@@ -31,7 +31,7 @@ const plugins = [
       { content: 'img{width: 300px}' },
     ],
     cssLoader: (code, url) => {
-      console.log('css-loader', url, code.slice(0, 50) + '...');
+      console.log('-> cssLoader', url, code.slice(0, 50) + '...');
       return code;
     },
     cssAfterLoaders: [
