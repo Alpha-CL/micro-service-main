@@ -1,5 +1,5 @@
+import MicroServiceApp from '@/components/MicroServiceApp';
 import React from 'react';
-import WujieReact from 'wujie-react';
 // import styles from "./index.module.less";
 // import classNames from "classnames";
 
@@ -14,17 +14,19 @@ const WuJie: React.FC<WuJieProps> = (props: WuJieProps) => {
       {/*{props.children}*/}
       {/*props: {JSON.stringify(props)}<br/>*/}
 
-      <div style={{ border: '1px solid black' }}>
-        <WujieReact
-          height="100%"
-          width="100%"
-          name="micro-sub-app"
-          url={'//localhost:8801/'}
-          sync={true}
-          props={props}
-          alive={true}
-        />
-      </div>
+      {/*<div style={{ border: '1px solid black' }}>*/}
+      {/*  <WujieReact*/}
+      {/*    height="100%"*/}
+      {/*    width="100%"*/}
+      {/*    name="micro-sub-app"*/}
+      {/*    url={'//localhost:8801/'}*/}
+      {/*    sync={true}*/}
+      {/*    props={props}*/}
+      {/*    alive={true}*/}
+      {/*  />*/}
+      {/*</div>*/}
+
+      <MicroServiceApp name={'micro-sub-app'} url={'//localhost:8801/demo'} />
     </React.Fragment>
   );
 };
