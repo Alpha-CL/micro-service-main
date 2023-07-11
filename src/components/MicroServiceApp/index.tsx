@@ -183,7 +183,7 @@ const MicroServiceApp: ForwardRefRenderFunction<
               height={height}
               alive={alive}
               sync={sync}
-              props={AppProps}
+              props={{ ...AppProps, test: 'microServiceMain' }}
               attrs={attrs}
               fetch={fetch || microServiceAppOnFetch}
               // replace={replace} // 运行时处理子应用的代码
