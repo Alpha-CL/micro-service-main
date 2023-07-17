@@ -26,7 +26,10 @@ const WuJie: React.FC<WuJieProps> = (props: WuJieProps) => {
       {/*  />*/}
       {/*</div>*/}
 
-      <MicroServiceApp name={'micro-sub-app'} url={'//localhost:8801/demo'} />
+      <MicroServiceApp
+        name={'micro-sub-app'}
+        url={'//localhost:8801/demo.html'}
+      />
     </React.Fragment>
   );
 };
