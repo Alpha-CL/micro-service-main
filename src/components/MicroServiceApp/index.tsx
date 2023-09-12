@@ -1,3 +1,7 @@
+import MicroServiceAppErrorBoundary from '@/components/MicroServiceApp/ErrorBoundary';
+import apps from '@/wujie/apps';
+import { useLocation } from '@@/exports';
+import qs from 'querystring';
 import React, {
   ForwardRefRenderFunction,
   Ref,
@@ -5,20 +9,13 @@ import React, {
   useImperativeHandle,
   useState,
 } from 'react';
-// import styles from "./index.module.less";
-// import classNames from "classnames";
-// import PropTypes from 'prop-types';
-import MicroServiceAppErrorBoundary from '@/components/MicroServiceApp/ErrorBoundary';
-import apps from '@/wujie/apps';
-import { useLocation } from '@@/exports';
-import qs from 'querystring';
-import { baseOptions, destroyApp, plugin } from 'wujie';
+import { destroyApp, plugin, preOptions } from 'wujie';
 import WujieReact from 'wujie-react';
 
 type lifecycle = (appWindow: Window) => any;
 type loadErrorHandler = (url: string, e: Error) => any;
 
-export interface MicroServiceAppProps extends baseOptions {
+export interface MicroServiceAppProps extends preOptions {
   [key: string]: any;
 
   /** 唯一性用户必须保证 */
@@ -100,8 +97,8 @@ const MicroServiceApp: ForwardRefRenderFunction<
     plugins = [],
   } = props;
 
-  const [loading, setLoading] = useState<boolean>(false);
-  const [app, setApp] = useState<object>({});
+  const [loading, setLoading] = useState<any>(false);
+  const [app, setApp] = useState<any>({});
   const [appPath, setAppPath] = useState<string>('');
 
   // Customize instance values exposed to parent components
@@ -152,7 +149,7 @@ const MicroServiceApp: ForwardRefRenderFunction<
    * @param url {string} 请求地址
    * @param options {object} 请求时候携带参数
    */
-  const microServiceAppOnFetch = (url, options) => {
+  const microServiceAppOnFetch = (url: string, options: any) => {
     return window.fetch(url, { ...options, token: 'include' });
   };
 
