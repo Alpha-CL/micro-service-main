@@ -1,3 +1,4 @@
+import MicroServiceApp from '@/components/MicroServiceApp';
 import React from 'react';
 // import classNames from "classnames";
 
@@ -8,10 +9,7 @@ export interface DemoProps {
 const Demo: React.FC<DemoProps> = (props: DemoProps) => {
   return (
     <React.Fragment>
-      DemoComp
-      {props.children}
-      props: {JSON.stringify(props)}
-      <br />
+      <MicroServiceApp name={'micro-sub-app'} />
     </React.Fragment>
   );
 };
