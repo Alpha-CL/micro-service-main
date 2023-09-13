@@ -1,4 +1,5 @@
-import { Result as AntdResult, Button, ResultStatusType } from 'antd';
+import { Result as AntdResult, Button } from 'antd';
+import { ResultStatusType } from 'antd/es/result';
 import React, { ReactNode } from 'react';
 // import styles from "./index.module.less";
 // import classNames from "classnames";
