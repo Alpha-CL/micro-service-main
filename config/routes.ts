@@ -7,9 +7,15 @@ const routes = [
     redirect: '/demo',
   },
   {
-    name: 'demo',
+    name: 'Demo',
     path: '/demo',
     component: './demo',
+    menu: {},
+  },
+  {
+    name: 'ChatGPT',
+    path: '/chatgpt',
+    component: './chatgpt',
   },
   // {
   //   path: "/*",
