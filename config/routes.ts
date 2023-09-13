@@ -9,12 +9,7 @@ const routes = [
   {
     name: 'demo',
     path: '/demo',
-    component: './Demo',
-  },
-  {
-    name: 'wujie',
-    path: '/wujie',
-    component: './WuJie',
+    component: './demo',
   },
   // {
   //   path: "/*",
