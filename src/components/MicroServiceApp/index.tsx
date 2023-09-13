@@ -13,7 +13,7 @@ import { destroyApp, plugin, preOptions } from 'wujie';
 import WujieReact from 'wujie-react';
 import styles from './index.module.less';
 
-type lifecycle = (appWindow: Window) => any;
+type lifecycle = (appWindow: appWindow) => any;
 type loadErrorHandler = (url: string, e: Error) => any;
 
 export interface MicroServiceAppProps extends preOptions {
@@ -70,7 +70,7 @@ interface MicroServiceAppRef {
   [key: string]: any;
 }
 
-type LifeCycle = (appWindow: Window) => any;
+type LifeCycle = (appWindow: appWindow) => any;
 
 const MicroServiceApp: ForwardRefRenderFunction<
   MicroServiceAppRef,
@@ -154,15 +154,15 @@ const MicroServiceApp: ForwardRefRenderFunction<
     return window.fetch(url, { ...options, token: 'include' });
   };
 
-  const beforeLoad: LifeCycle = (appWindow: Window) => {};
-  const beforeMount: LifeCycle = (appWindow: Window) => {};
-  const afterMount: LifeCycle = (appWindow: Window) => {
+  const beforeLoad: LifeCycle = (appWindow: appWindow) => {};
+  const beforeMount: LifeCycle = (appWindow: appWindow) => {};
+  const afterMount: LifeCycle = (appWindow: appWindow) => {
     if (!!app.name && !!app.url) setLoading(false);
   };
-  const beforeUnmount: LifeCycle = (appWindow: Window) => {};
-  const afterUnmount: LifeCycle = (appWindow: Window) => {};
-  const activated: LifeCycle = (appWindow: Window) => {};
-  const deactivated: LifeCycle = (appWindow: Window) => {};
+  const beforeUnmount: LifeCycle = (appWindow: appWindow) => {};
+  const afterUnmount: LifeCycle = (appWindow: appWindow) => {};
+  const activated: LifeCycle = (appWindow: appWindow) => {};
+  const deactivated: LifeCycle = (appWindow: appWindow) => {};
   const loadError: loadErrorHandler = (url: string, e: Error) => {};
 
   return (

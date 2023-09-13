@@ -1,7 +1,7 @@
 import { EventBus } from 'wujie';
 
 declare global {
-  interface Window {
+  interface appWindow {
     $wujie: {
       bus: EventBus;
       shadowRoot?: ShadowRoot;
@@ -16,7 +16,10 @@ declare global {
     __POWERED_BY_WUJIE__: boolean;
     __WUJIE_MOUNT: any;
     __WUJIE_UNMOUNT: any;
+    __WUJIE: {
+      id: string;
+    };
   }
 }
 
-export {};
+export { appWindow };

@@ -3,7 +3,7 @@ import apps from './apps';
 
 const { setupApp, preloadApp, bus } = WujieReact;
 const isProduction = process.env.NODE_ENV === 'production';
-bus.$on('click', (msg) => window.alert(msg));
+bus.$on('click', (msg: string) => window.alert(msg));
 
 const degrade =
   window.localStorage.getItem('degrade') === 'true' ||

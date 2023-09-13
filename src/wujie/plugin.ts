@@ -1,23 +1,23 @@
 const plugins = [
   {
-    htmlLoader: (code) => {
+    htmlLoader: (code: string) => {
       console.log('-> htmlLoader');
       return code;
     },
     jsBeforeLoaders: [
       {
-        callback(appWindow) {
+        callback(appWindow: appWindow) {
           console.log('-> jsBeforeLoaders', appWindow.__WUJIE.id);
         },
       },
     ],
-    jsLoader: (code, url) => {
+    jsLoader: (code: string, url: string) => {
       console.log('-> jsLoader', url);
       return code;
     },
     jsAfterLoaders: [
       {
-        callback(appWindow) {
+        callback(appWindow: appWindow) {
           console.log('-> jsAfterLoaders', appWindow.__WUJIE.id);
         },
       },
@@ -30,7 +30,7 @@ const plugins = [
       //在加载html所有的样式之前添加一个内联样式
       { content: 'img{width: 300px}' },
     ],
-    cssLoader: (code, url) => {
+    cssLoader: (code: string, url: string) => {
       console.log('-> cssLoader', url, code.slice(0, 50) + '...');
       return code;
     },
