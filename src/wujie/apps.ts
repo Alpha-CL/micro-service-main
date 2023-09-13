@@ -1,7 +1,7 @@
 const apps = [
   {
     name: 'micro-sub-app',
-    url: '//localhost:8801/demo.html',
+    url: '//openwrt.alphal.cn:60106/',
     // attrs: {},
     // prefix: {},
     // exec: true,
