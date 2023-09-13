@@ -11,6 +11,7 @@ import React, {
 } from 'react';
 import { destroyApp, plugin, preOptions } from 'wujie';
 import WujieReact from 'wujie-react';
+import styles from './index.module.less';
 
 type lifecycle = (appWindow: Window) => any;
 type loadErrorHandler = (url: string, e: Error) => any;
@@ -89,7 +90,7 @@ const MicroServiceApp: ForwardRefRenderFunction<
     fetch,
     props: AppProps = {},
     attrs = {},
-    replace = (code: string) => {},
+    replace = (code: string) => code,
     sync = true,
     prefix = {},
     fiber = true,
@@ -138,7 +139,7 @@ const MicroServiceApp: ForwardRefRenderFunction<
         }
       }
     } catch (err) {
-      console.log('-> MicroServiceApp.initConfig', err);
+      throw new Error(`-> MicroServiceApp.initConfig: ${err}`);
     }
   };
 
@@ -171,7 +172,7 @@ const MicroServiceApp: ForwardRefRenderFunction<
 
       <MicroServiceAppErrorBoundary>
         {!!app.name && !!app.url && (
-          <>
+          <div className={styles.microService}>
             <WujieReact
               name={app.name}
               url={app.url}
@@ -183,7 +184,7 @@ const MicroServiceApp: ForwardRefRenderFunction<
               props={{ ...AppProps, test: 'microServiceMain' }}
               attrs={attrs}
               fetch={fetch || microServiceAppOnFetch}
-              // replace={replace} // 运行时处理子应用的代码
+              replace={replace} // 运行时处理子应用的代码
               prefix={prefix} // 短路径的能力，当子应用开启路由同步模式后，如果子应用链接过长，可以采用短路径替换的方式缩短同步的链接
               fiber={fiber} // js 的执行模式，由于子应用的执行会阻塞主应用的渲染线程，当设置为true时js采取类似react fiber的模式方式间断执行
               degrade={degrade}
@@ -197,7 +198,7 @@ const MicroServiceApp: ForwardRefRenderFunction<
               deactivated={deactivated}
               loadError={loadError}
             />
-          </>
+          </div>
         )}
       </MicroServiceAppErrorBoundary>
     </React.Fragment>
