@@ -1,7 +1,3 @@
-import MicroServiceAppErrorBoundary from '@/components/MicroServiceApp/ErrorBoundary';
-import apps from '@/wujie/apps';
-import { useLocation } from '@@/exports';
-import qs from 'querystring';
 import React, {
   ForwardRefRenderFunction,
   Ref,
@@ -9,20 +5,23 @@ import React, {
   useImperativeHandle,
   useState,
 } from 'react';
-import { destroyApp, plugin, preOptions } from 'wujie';
+import { destroyApp, plugin } from 'wujie';
 import WujieReact from 'wujie-react';
-import styles from './index.module.less';
+import MicroServiceAppErrorBoundary from './ErrorBoundary';
+import styles from './index.module.scss';
 
 type lifecycle = (appWindow: appWindow) => any;
 type loadErrorHandler = (url: string, e: Error) => any;
 
-export interface MicroServiceAppProps extends preOptions {
+export interface MicroServiceAppProps {
   [key: string]: any;
 
   /** 唯一性用户必须保证 */
   name: string;
   /** 需要渲染的url */
   url: string;
+  /** 服务配置对象 */
+  apps: Array<any>;
   /** iframe 的宽度 */
   width?: string;
   /** iframe 的高度 */
@@ -79,13 +78,11 @@ const MicroServiceApp: ForwardRefRenderFunction<
   props: MicroServiceAppProps,
   ref: Ref<MicroServiceAppRef | HTMLDivElement>,
 ) => {
-  const location = useLocation();
-
   const {
+    name = '',
+    url = '',
     width = '100%',
     height = '100%',
-    name,
-    url,
     alive = true,
     fetch,
     props: AppProps = {},
@@ -99,49 +96,18 @@ const MicroServiceApp: ForwardRefRenderFunction<
   } = props;
 
   const [loading, setLoading] = useState<any>(false);
-  const [app, setApp] = useState<any>({});
-  const [appPath, setAppPath] = useState<string>('');
 
   // Customize instance values exposed to parent components
   useImperativeHandle(ref, () => ({}));
 
   useEffect(() => {
-    if (!!name) {
+    if (name && url) {
       setLoading(true);
-      initConfig(name);
     }
     return () => {
       destroyApp(name);
     };
-  }, []);
-
-  useEffect(() => {
-    const queryString = location.search.slice(1);
-    const queryParams = qs.parse(queryString);
-    if (queryParams[name]) {
-      setAppPath(String(queryParams[name]));
-    }
-  }, [location.search]);
-
-  /**
-   * 根据 name 从 apps 中筛选出指定的 app的配置对象
-   *
-   * @param name {string} app 唯一名称
-   */
-  const initConfig = (name: string) => {
-    try {
-      for (let i = 0; i <= apps.length; i++) {
-        const app = apps[i];
-        if (app.name === name && !!app.url) {
-          setApp(app);
-          setLoading(false);
-          break;
-        }
-      }
-    } catch (err) {
-      throw new Error(`-> MicroServiceApp.initConfig: ${err}`);
-    }
-  };
+  }, [name, url]);
 
   /**
    * 添加自定义fetch后，子应用的静态资源请求和采用了 fetch 的接口请求全部会走自定义fetch
@@ -157,7 +123,7 @@ const MicroServiceApp: ForwardRefRenderFunction<
   const beforeLoad: LifeCycle = (appWindow: appWindow) => {};
   const beforeMount: LifeCycle = (appWindow: appWindow) => {};
   const afterMount: LifeCycle = (appWindow: appWindow) => {
-    if (!!app.name && !!app.url) setLoading(false);
+    if (name && url) setLoading(false);
   };
   const beforeUnmount: LifeCycle = (appWindow: appWindow) => {};
   const afterUnmount: LifeCycle = (appWindow: appWindow) => {};
@@ -166,42 +132,37 @@ const MicroServiceApp: ForwardRefRenderFunction<
   const loadError: loadErrorHandler = (url: string, e: Error) => {};
 
   return (
-    <React.Fragment>
-      {/*app: {JSON.stringify(app)}*/}
-      {/*appPath: {JSON.stringify(appPath)}*/}
-
+    <div className={styles.microService}>
       <MicroServiceAppErrorBoundary>
-        {!!app.name && !!app.url && (
-          <div className={styles.microService}>
-            <WujieReact
-              name={app.name}
-              url={app.url}
-              loading={loading}
-              width={width}
-              height={height}
-              alive={alive}
-              sync={sync}
-              props={{ ...AppProps, test: 'microServiceMain' }}
-              attrs={attrs}
-              fetch={fetch || microServiceAppOnFetch}
-              replace={replace} // 运行时处理子应用的代码
-              prefix={prefix} // 短路径的能力，当子应用开启路由同步模式后，如果子应用链接过长，可以采用短路径替换的方式缩短同步的链接
-              fiber={fiber} // js 的执行模式，由于子应用的执行会阻塞主应用的渲染线程，当设置为true时js采取类似react fiber的模式方式间断执行
-              degrade={degrade}
-              plugins={plugins} // webpack 中间件配置
-              beforeLoad={beforeLoad}
-              beforeMount={beforeMount}
-              afterMount={afterMount}
-              beforeUnmount={beforeUnmount}
-              afterUnmount={afterUnmount}
-              activated={activated}
-              deactivated={deactivated}
-              loadError={loadError}
-            />
-          </div>
+        {name && url && (
+          <WujieReact
+            name={name}
+            url={url}
+            loading={loading}
+            width={width}
+            height={height}
+            alive={alive}
+            sync={sync}
+            props={{ ...AppProps, test: 'microServiceMain' }}
+            attrs={attrs}
+            fetch={fetch || microServiceAppOnFetch}
+            replace={replace} // 运行时处理子应用的代码
+            prefix={prefix} // 短路径的能力，当子应用开启路由同步模式后，如果子应用链接过长，可以采用短路径替换的方式缩短同步的链接
+            fiber={fiber} // js 的执行模式，由于子应用的执行会阻塞主应用的渲染线程，当设置为true时js采取类似react fiber的模式方式间断执行
+            degrade={degrade}
+            plugins={plugins} // webpack 中间件配置
+            beforeLoad={beforeLoad}
+            beforeMount={beforeMount}
+            afterMount={afterMount}
+            beforeUnmount={beforeUnmount}
+            afterUnmount={afterUnmount}
+            activated={activated}
+            deactivated={deactivated}
+            loadError={loadError}
+          />
         )}
       </MicroServiceAppErrorBoundary>
-    </React.Fragment>
+    </div>
   );
 };
 
