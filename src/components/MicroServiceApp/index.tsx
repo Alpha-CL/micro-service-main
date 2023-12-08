@@ -117,19 +117,42 @@ const MicroServiceApp: ForwardRefRenderFunction<
    * @param options {object} 请求时候携带参数
    */
   const microServiceAppOnFetch = (url: string, options: any) => {
-    return window.fetch(url, { ...options, token: 'include' });
+    return window.fetch(url, { ...options, token: 'token' });
   };
 
-  const beforeLoad: LifeCycle = (appWindow: appWindow) => {};
-  const beforeMount: LifeCycle = (appWindow: appWindow) => {};
+  const beforeLoad: LifeCycle = (appWindow: appWindow) => {
+    props.beforeLoad && props.beforeLoad(appWindow);
+  };
+
+  const beforeMount: LifeCycle = (appWindow: appWindow) => {
+    props.beforeMount && props.beforeMount(appWindow);
+  };
+
   const afterMount: LifeCycle = (appWindow: appWindow) => {
     if (name && url) setLoading(false);
+    props.afterMount && props.afterMount(appWindow);
   };
-  const beforeUnmount: LifeCycle = (appWindow: appWindow) => {};
-  const afterUnmount: LifeCycle = (appWindow: appWindow) => {};
-  const activated: LifeCycle = (appWindow: appWindow) => {};
-  const deactivated: LifeCycle = (appWindow: appWindow) => {};
-  const loadError: loadErrorHandler = (url: string, e: Error) => {};
+
+  const beforeUnmount: LifeCycle = (appWindow: appWindow) => {
+    props.beforeUnmount && props.beforeUnmount(appWindow);
+  };
+
+  const afterUnmount: LifeCycle = (appWindow: appWindow) => {
+    props.afterMount && props.afterMount(appWindow);
+  };
+
+  const activated: LifeCycle = (appWindow: appWindow) => {
+    props.activated && props.activated(appWindow);
+  };
+
+  const deactivated: LifeCycle = (appWindow: appWindow) => {
+    props.deactivated && props.deactivated(appWindow);
+  };
+
+  const loadError: loadErrorHandler = (url: string, err: Error) => {
+    setLoading(false);
+    props.loadError && props.loadError(url, err);
+  };
 
   return (
     <div className={styles.microService}>
